@@ -10,7 +10,13 @@
 
 def verbing(s):
     # +++your code here+++
-    return
+    return_value = s
+    if(len(s) >= 3):
+        if(s[-3:] == 'ing'):
+            return_value = s + 'ly'
+        else:
+            return_value = s + 'ing'
+    return return_value
 
 
 # E. not_bad
@@ -24,7 +30,11 @@ def verbing(s):
 
 def not_bad(s):
     # +++your code here+++
-    return
+    import re
+    old = 'not.*bad'
+    new = 'good'
+    return_value = re.sub(old, new, s, flags=re.IGNORECASE)
+    return return_value
 
 
 # F. front_back
@@ -37,7 +47,34 @@ def not_bad(s):
 
 def front_back(a, b):
     # +++your code here+++
-    return
+    def is_even(s):
+        num = len(s)
+        return_val = num % 2 == 0
+        return return_val
+    
+    def split_string(s):
+        s_front = ''
+        s_back = ''
+        front_length = 0
+        back_length = 0
+        if(is_even(s)):
+            front_length = int(len(s) / 2)
+            back_length = front_length            
+        else:
+            front_length = int((len(s) // 2) + 1)
+            back_length = front_length - 1
+
+        s_front = s[0:front_length]
+        s_back = s[-back_length:]
+        
+        return s_front, s_back
+
+    a_vals = split_string(a)
+    b_vals = split_string(b)
+
+    return_value = a_vals[0] + b_vals[0] + a_vals[1] + b_vals[1]
+
+    return return_value
 
 
 # Simple provided test() function used in main() to print
